@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.pet_row.view.*
 
-class PetRecAdapter : RecyclerView.Adapter<PetViewHolder>() {
+class PetRecAdapter : RecyclerView.Adapter<PetRecAdapter.PetViewHolder>() {
 
     //num of items
     override fun getItemCount(): Int {
@@ -20,8 +20,26 @@ class PetRecAdapter : RecyclerView.Adapter<PetViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
+
         var pet = petAdapter.returnArray()[position]
+
         holder.view.petNameTextView.text = pet?.name
+
+        holder.view.petBioTextView.text = pet?.bio
+
+        holder.view.petTypeView.text = pet?.type
+
+        holder.view.petContactTextView.text = pet?.contact
+
+        petAdapter.setImageOnView(pet?.name, holder.view.petImageView)
+
+
+        holder.view.adoptThatBoi.setOnClickListener {
+
+            holder.view.typeView.visibility = View.VISIBLE
+
+            holder.view.petTypeView.visibility = View.VISIBLE
+
         holder.view.petBioTextView.text = pet?.bio
         holder.view.petTypeView.text = pet?.type
         holder.view.petContactTextView.text = pet?.contact
@@ -50,9 +68,10 @@ class PetRecAdapter : RecyclerView.Adapter<PetViewHolder>() {
             holder.view.adoptThatBoi.visibility = View.VISIBLE
             notifyDataSetChanged()
         }
+
     }
 }
 
 class PetViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-}
+}}
